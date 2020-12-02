@@ -114,3 +114,46 @@ const data = [
   Step 5: Try adding new article object to the data array. Make sure it is in the same format as the others.
   Refresh the page to see the new article.
 */
+function articleMaker(obj){
+  const art = document.createElement('div');
+  const header2 = document.createElement('h2');
+  const date = document.createElement('p');
+  const para1 = document.createElement('p');
+  const para2 = document.createElement('p');
+  const para3 = document.createElement('p');
+  const expandButton = document.createElement('span');
+  art.appendChild(header2);
+  art.appendChild(date);
+  art.appendChild(para1);
+  art.appendChild(para2);
+  art.appendChild(para3);
+  art.appendChild(expandButton);
+  art.classList.add('article');
+  date.classList.add('date');
+  expandButton.classList.add('expandButton');
+  header2.textContent = obj.title;
+  date.textContent = obj.data;
+  para1.textContent = obj.firstParagraph;
+  para2.textContent = obj.secondParagraph;
+  para3.textContent = obj.thirdParagraph;
+  expandButton.textContent = '+';
+
+  expandButton.addEventListener('click', ()=>{
+    art.classList.toggle("article-open");
+  })
+return art
+}
+
+
+
+const articles = document.querySelector('.articles');
+// const artMaker = articleMaker(data);
+// articles.appendChild(artMaker);
+
+data.forEach((item) =>{
+  let newItem =  articleMaker(item);
+  articles.appendChild(newItem);
+})
+
+const newArticle = articleMaker({title: 'Duck', date: '12/02/20', firstParagraph: 'quack', secondParagraph: 'quack', thirdParagraph: 'quack'});
+articles.appendChild(newArticle);
